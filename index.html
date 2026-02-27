@@ -64,14 +64,43 @@
 </script>
 </head>
 <body>
+	
+<nav id="mainNav">
+  <div class="nav-inner">
+    
+    <div class="logo">
+      <a href="index.html">STREDNEBA RECORDS</a>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+</nav>
+
+<!-- FULLSCREEN MENU (MUST BE OUTSIDE NAV) -->
+<div class="nav-menu" id="navMenu">
+  <div class="menu-inner">
+
+    <div class="menu-links">
+      <a href="#">RECORDING ARTISTS</a>
+      <a href="#">SONGWRITERS</a>
+      <a href="#">NEWS</a>
+      <a href="#">INVESTORS</a>
+		<a href="#">CAREERS</a>
+    </div>
+
+
+  </div>
+</div>
 <div class="hero-curve-1"></div>
 <section class="hero-wrapper-1"> </section>
-<nav id="mainNav">
-  <div class="nav"> <a href="index.html">RECORDING ARTISTS</a> <a href="songwriters.html">SONGWRITERS</a> <a href="index.html">NEWS</a> <a href="index.html">INVESTORS</a> <a href="index.html">CAREER</a> </div>
-</nav>
-<div class="video-2">
- 
-</div>
+		
+
+
 <section class="hero-wrapper">
   <div class="hero-content">
     <div class="we-are-section">
@@ -108,7 +137,9 @@
       </div>
     </div>
   </div>
+	
 </section>
+	
 <div class="hero-curve-1"></div>
 <section class="hero-wrapper-2">
   <div id="circleSectionInner">
@@ -117,7 +148,6 @@
 </section>
 
 <!-- ================= YOUR ORIGINAL CONTENT ================= -->
-<div class="logo"><a href="index.html">STREDNEBA RECORDS</a></div>
 <div class="container">
   <div class="heading" >SOMETHING TO READ</div>
   <div class="line"></div>
@@ -160,6 +190,7 @@
 </footer>
 </body>
 <script>
+/* ===== CIRCLE SCROLL EFFECT ===== */
 const section = document.querySelector(".hero-wrapper-2");
 const video = document.getElementById("circleVideo");
 
@@ -175,20 +206,32 @@ window.addEventListener("scroll", () => {
   let opacity;
 
   if (clamped <= 1) {
-    // ENTERING (from under top section)
-    scale = 0.6 + (clamped * 0.4);     // 0.6 → 1
-   translateY = 250 - (clamped * 250);
+    scale = 0.6 + (clamped * 0.4);
+    translateY = 250 - (clamped * 250);
     opacity = clamped;
   } else {
-    // EXITING (into next section)
     const exitProgress = clamped - 1;
-    scale = 1 - (exitProgress * 0.4);   // 1 → 0.6
-    translateY = exitProgress * 150;    // 0 → 150px
+    scale = 1 - (exitProgress * 0.4);
+    translateY = exitProgress * 150;
     opacity = 1 - exitProgress;
   }
 
   video.style.transform = `translateY(${translateY}px) scale(${scale})`;
   video.style.opacity = opacity;
+});
+
+
+/* ===== HAMBURGER MENU ===== */
+document.addEventListener("DOMContentLoaded", function() {
+
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("navMenu");
+
+  hamburger.addEventListener("click", function() {
+    navMenu.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
 });
 </script>
 </html>

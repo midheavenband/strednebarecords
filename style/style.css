@@ -17,7 +17,19 @@ body {
   background: #000;
   color: white;
   overflow-x: hidden;
-} /* ========================= */ /* ===== HERO SECTION ====== */ /* ========================= */
+}
+
+body.menu-open .hero-wrapper,
+body.menu-open .hero-wrapper-1,
+body.menu-open .hero-wrapper-2,
+body.menu-open .container,
+body.menu-open .footer {
+  filter: blur(20px);
+  transform: scale(1.05);
+  transition: 0.5s ease;
+}
+
+/* ========================= */ /* ===== HERO SECTION ====== */ /* ========================= */
 .hero-wrapper {
   position: relative;
   z-index: 5;
@@ -27,6 +39,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0 20px;
+	 padding-top: 120px;
 }
 .hero-content img {
   width: 900px;
@@ -62,14 +75,14 @@ body {
   min-height: 200vh;
   overflow: hidden;
   background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.9) -20%, #FA3C3C 35%, rgba(250, 60, 60, 0.7) 65%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 1) 50%);
-  animation: subtleRedPulse 25s ease infinite;
+  animation: subtleRedPulse 4s ease-in-out infinite;
 }
 @keyframes subtleRedPulse {
   0%, 100% {
     filter: brightness(1) saturate(1);
   }
   50% {
-    filter: brightness(1.5) saturate(1.03);
+    filter: brightness(2) saturate(1.03);
   }
 }
 .hero-content-1 {
@@ -135,6 +148,7 @@ body {
   max-width: 100%;
   display: flex;
   justify-content: center;
+	border-radius: 20px;
 }
 .we-are-text {
   flex: 1;
@@ -178,20 +192,8 @@ body {
   font-size: clamp(26px, 5vw, 48px);
 } /* ========================= */ /* ===== NAV + LOGO ======== */ /* ========================= */
 .logo {
-  position: absolute;
-  top: 30px;
-  left: 30px;
   font-size: 22px;
   font-weight: 900;
-  z-index: 10;
-}
-.logo a {
-  color: white;
-  text-decoration: none;
-}
-.logo a:hover {
-  color: darkred;
-  transition: 5s ease;
 }
 .container {
   padding: clamp(60px, 6vw, 80px);
@@ -203,33 +205,125 @@ body {
   color: white;
   text-decoration: none;
 }
-nav {
-  position: sticky;
+/* ========================= */
+/* ===== STICKY NAV ======== */
+/* ========================= */
+
+#mainNav {
+  position: fixed;
   top: 0;
-	margin-top: 5%;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+
+  background: rgba(0, 0, 0, 0.05); /* MUST have tiny transparency */
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.nav {
+
+.nav-inner {
   display: flex;
-  gap: 60px;
-  padding: 30px 0;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 25px 40px;
 }
-.nav a {
-  font-size: clamp(16px, 2vw, 20px);
+
+.logo a {
+  font-size: 22px;
   font-weight: 900;
-  line-height: 1.05;
-  max-width: 900px;
-  color: white;
   text-decoration: none;
-  transition: opacity 0.3s ease;
-} /* ========================= */ /* ===== CONTENT ======== */ /* ========================= */ .heading {
+  color: white;
+}
+
+.logo a:hover {
+  color: darkred;
+  transition: 5s ease;
+}
+
+/* Hamburger */
+.hamburger {
+  width: 30px;
+  height: 20px;
+  display: flex;
+	align-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+	
+}
+
+.hamburger span {
+  height: 2px;
+  width: 100%;
+  background: white;
+  transition: 0.3s ease;
+}
+
+
+/* ========================= */
+/* ===== FULLSCREEN MENU ==== */
+/* ========================= */
+
+.nav-menu {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 1500;
+}
+
+.nav-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+	
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+margin-top: 5%;
+}
+
+.menu-links a {
+  font-size: clamp(42px, 6vw, 90px);
+  font-weight: 900;
+  text-decoration: none;
+  color: white;
+  line-height: 1.05;
+  transition: 0.3s ease;
+}
+
+
+
+
+
+
+.heading {
   font-size: clamp(36px, 6vw, 64px);
   font-weight: 800;
   margin-bottom: 20px;
 }
+
+
+
+
 .line {
   height: 1px;
   background: white;
@@ -253,6 +347,32 @@ nav {
 } /* Remove black-on-black issue */ .post-title.light, .post-title.dark {
   color: white;
 }
+
+.recording-artists{
+margin-bottom: 5%;
+}
+.box{
+	width: 100%;
+	height: 1000px;
+	font-size: 170px;
+	font-weight: 800;
+	align-content: center;
+	display: contents;
+}
+.box-1{
+	width: 100%;
+	height: 500px;
+	background-color: #dd5a9e;
+	color: #e7e646;
+}
+.box-2{
+		width: 100%;
+	height: 500px;
+	background-color: #e7e646;
+	color: #dd5a9e;
+}
+
+
 .footer {
   background: black;
   padding: 120px 60px 40px;
