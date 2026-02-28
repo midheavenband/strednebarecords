@@ -529,7 +529,7 @@ body.menu-open .hero-wrapper, body.menu-open .hero-wrapper-1, body.menu-open .he
 		 /* Full height for desktop/tablet */
   }
   .artist-hero-content h1 {
-    font-size: 40px; /* Larger text on desktop */
+    font-size: 20px; /* Larger text on desktop */
   }
   .artist-intro {
     padding: 120px 40px;
